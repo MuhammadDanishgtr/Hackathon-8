@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Input } from "../../app/components/ui/input"
 import { Button } from "../../app/components/ui/button";
-import ContactPage from "./products/contact/page";
+
 
 export default function Footer() {
   return (
