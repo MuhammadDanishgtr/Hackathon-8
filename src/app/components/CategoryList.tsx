@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-interface Category {
+interface categorys {
   _id: string
   name: string
   slug: {
@@ -8,7 +8,7 @@ interface Category {
   }
 }
 
-export default function CategoryList({ categories }: { categories: Category[] }) {
+export default function CategoryList({ categories }: { categories: categorys[] }) {
   return (
     <div className="flex space-x-4 mb-8 overflow-x-auto">
       {categories.map((category) => (
