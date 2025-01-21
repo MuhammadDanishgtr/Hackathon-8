@@ -5,8 +5,9 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ShoppingCart, Menu, X } from 'lucide-react'
-
-export default function MainNav() {
+import { useCart } from "../contexts/CartContext"
+const Navbar = () => {
+  const { getCartCount } = useCart()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -21,6 +22,9 @@ export default function MainNav() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             <div className="flex gap-6">
+            <Link href="/" className="text-xl font-bold">
+          My Store
+        </Link>
               <Link href="/" className="text-[#272343] hover:text-[#00BAB5]">Home</Link>
               <Link href="./components/products/contact" className="text-[#272343] hover:text-[#00BAB5]">Shop</Link>
               <Link href="./components/products" className="text-[#272343] hover:text-[#00BAB5]">Products</Link>
@@ -28,12 +32,20 @@ export default function MainNav() {
               <Link href="./components/about" className="text-[#272343] hover:text-[#00BAB5]">About</Link>
             </div>
             <div className="text-[#272343]">0800 555 5555</div>
-            <Link href="/components/cart" className="relative">
+            {/* <Link href="/components/cart" className="relative">
               <ShoppingCart className="w-6 h-6 text-[#272343]" />
               <span className="absolute -top-2 -right-2 bg-[#00BAB5] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 2
               </span>
-            </Link>
+            </Link> */}
+            <Link href="/cart" className="text-gray-600 hover:text-gray-800 relative">
+            Cart
+            {getCartCount() > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                {getCartCount()}
+              </span>
+            )}
+          </Link>
           </div>
 
           {/* Mobile Navigation */}
@@ -69,3 +81,7 @@ export default function MainNav() {
     </nav>
   )
 }
+
+
+export default Navbar
+

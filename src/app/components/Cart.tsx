@@ -1,38 +1,54 @@
-'use client'
+"use client";
 
-import { useCart } from '../contexts/CartContext'
+import React, { createContext, useContext, useState } from "react";
 
-export default function Cart() {
-  const { cartItems, removeFromCart } = useCart()
+interface CartItem {
+  id: string;
+  name: string;
+  image: string;
+  price: number;
+  quantity: number;
+}
 
-  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+interface CartContextType {
+  items: CartItem[];
+  totalItems: number;
+  totalPrice: number;
+  updateQuantity: (id: string, quantity: number) => void;
+  removeItem: (id: string) => void;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [items, setItems] = useState<CartItem[]>([]);
+
+  const updateQuantity = (id: string, quantity: number) => {
+    setItems((prevItems) =>
+      prevItems.map((item) => (item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item))
+    );
+  };
+
+  const removeItem = (id: string) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <div className="border rounded-lg p-4">
-      <h2 className="text-2xl font-bold mb-4">Cart</h2>
-      {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        <>
-          {cartItems.map((item) => (
-            <div key={item.id} className="flex justify-between items-center mb-2">
-              <span>{item.name} (x{item.quantity})</span>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="text-red-500 hover:text-red-700"
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-          <div className="mt-4 text-xl font-semibold">Total: ${totalPrice.toFixed(2)}</div>
-          <button className="mt-4 w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">
-            Checkout
-          </button>
-        </>
-      )}
-    </div>
-  )
-}
+    <CartContext.Provider value={{ items, totalItems, totalPrice, updateQuantity, removeItem }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
+};
+
 

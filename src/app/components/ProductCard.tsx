@@ -1,48 +1,52 @@
-// 'use client'
+"use client"
 
-// import Image from 'next/image'
-// import Link from 'next/link'
-// import { useCart } from '../contexts/CartContext'
-// import { Product } from '../../lib/sanity'
+import Image from "next/image"
+import { urlFor } from "../../sanity/lib/image"
+import { useCart } from "../contexts/CartContext"
 
-// export default function ProductCard({ product }: { product: Product }) {
-//   const { addToCart } = useCart()
+export default function ProductCard({ product }: { product: any }) {
+  const { addToCart } = useCart()
 
-//   const handleAddToCart = () => {
-//     addToCart({
-//       id: product._id,
-//       name: product.name,
-//       price: product.price,
-//       quantity: 1,
-//     })
-//   }
+  const handleAddToCart = () => {
+    addToCart({
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      image: urlFor(product.image).url(),
+    })
+  }
 
-//   return (
-//     <div className="border rounded-lg p-4 hover:shadow-lg transition-shadow">
-//       <Link href={`/product/${product.slug.current}`}>
-//         <Image
-//           src={product.image || "/placeholder.svg"}
-//           alt={product.name}
-//           width={200}
-//           height={200}
-//           className="w-full h-48 object-cover mb-4"
-//         />
-//         <h3 className="text-lg font-semibold">{product.name}</h3>
-//         <p className="text-gray-600">${product.price}</p>
-//         <p className="text-sm text-gray-500">
+  return (
+    <div className="group relative">
+      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+        <Image
+          src={urlFor(product.image).url() || "/placeholder.svg"}
+          alt={product.name}
+          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+          width={300}
+          height={300}
+        />
+      </div>
+      <div className="mt-4 flex justify-between">
+        <div>
+          <h3 className="text-sm text-gray-700">
+            <a href={`/products/${product.slug}`}>
+              <span aria-hidden="true" className="absolute inset-0" />
+              {product.name}
+            </a>
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">{product.categoryName}</p>
+        </div>
+        <p className="text-sm font-medium text-gray-900">${product.price}</p>
+      </div>
+      <button
+        onClick={handleAddToCart}
+        className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
+      >
+        Add to Cart
+      </button>
+    </div>
+  )
+}
 
-
-
-// M 70 l                                Stock' : 'Out of Stock'}
-//         </p>
-//       </Link>
-//       <button
-//         onClick={handleAddToCart}
-//         className="mt-2 w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-//       >
-//         Add to Cart
-//       </button>
-//     </div>
-//   )
-// }
 
