@@ -13,6 +13,20 @@ export const productSchema = defineType({
       type: "string",
     },
     {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 200,
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .slice(0, 200)
+    },
+  },
+    {
       name: "price",
       title: "Price",
       type: "number",

@@ -1,3 +1,5 @@
+import { strict } from "assert";
+import { Input } from "postcss";
 
 
 
@@ -18,4 +20,9 @@ export interface Product{
     description? : string;
     inventory:number;
     tags: string;
+    slug: {
+        _type: 'slug';
+        current: string;
+    }
+
 }

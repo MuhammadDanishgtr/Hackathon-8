@@ -93,6 +93,7 @@
   import { Product } from "@/types/productstype";
   import { client } from "@/src/sanity/lib/client";
   import { allProduct } from "@/src/sanity/lib/querries";
+import Link from 'next/link';
   
 export default function ProductGrid() {
   const [products,setProducts] = useState<Product[]>([])
@@ -108,6 +109,7 @@ export default function ProductGrid() {
           {products.map((products) => (
             <div key={products._id} className="group relative">
               <div className="relative aspect-square bg-[#F7F7F7] rounded-lg overflow-hidden">
+               <Link href={`/product/${products.slug.current}`}>
                {products.image && (
                 <Image
                   src= {urlFor(products.image).url()}
@@ -128,6 +130,8 @@ export default function ProductGrid() {
                 >
                   <ShoppingCart className="w-4 h-4" />
                 </Button>
+
+          </Link>
               </div>
               <div className="mt-4 flex justify-between items-center">
                 <div>
