@@ -102,6 +102,7 @@
 //   }
 //   return context
 // }
+// correct code 
 
 "use client"
 
@@ -115,7 +116,7 @@ export interface CartItem {
   price: number
   quantity: number
   image: any
-  category: string
+  categoryName: string
 }
 
 interface CartContextType {
@@ -131,26 +132,19 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([])
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
-    try {
+  // Initialize state from localStorage if available
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("cart")
-      if (savedCart) {
-        setCart(JSON.parse(savedCart))
-      }
-    } catch (error) {
-      console.error("Error loading cart:", error)
+      return savedCart ? JSON.parse(savedCart) : []
     }
-  }, [])
+    return []
+  })
 
-  // Save cart to localStorage whenever it changes
+  // Update localStorage whenever cart changes
   useEffect(() => {
-    try {
+    if (typeof window !== "undefined") {
       localStorage.setItem("cart", JSON.stringify(cart))
-    } catch (error) {
-      console.error("Error saving cart:", error)
     }
   }, [cart])
 
@@ -169,7 +163,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           name: product.name,
           price: product.price,
           image: product.image,
-          category: product.category,
+          categoryName: product.categoryName,
           quantity: 1,
         },
       ]
@@ -203,21 +197,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return cart.reduce((count, item) => count + item.quantity, 0)
   }
 
-  return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart,
-        getCartTotal,
-        getCartCount,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  )
+  const value = {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    getCartTotal,
+    getCartCount,
+  }
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 
 export function useCart() {
@@ -227,4 +217,3 @@ export function useCart() {
   }
   return context
 }
-

@@ -153,7 +153,6 @@
 
 import "./globals.css"
 import { Inter } from "next/font/google"
-// import Navbar from "../../../../../components/Navbar"
 import MainNav from "../app/components/main-nav";
 import { CartProvider } from "./context/CartContext"
 import { Toaster } from "sonner"
@@ -176,9 +175,10 @@ export default function RootLayout({
         <CartProvider>
           <MainNav />
           {children}
-          <Toaster position="top-center" />
+          <Toaster position="top-center" richColors />
         </CartProvider>
       </body>
     </html>
   )
 }
+
