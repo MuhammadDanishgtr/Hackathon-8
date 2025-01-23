@@ -119,6 +119,38 @@
 //   )
 // }
 // last one 
+// import "./globals.css"
+// import { Inter } from "next/font/google"
+// // import Navbar from "../../../../../components/Navbar"
+// import MainNav from "../app/components/main-nav";
+// import { CartProvider } from "./context/CartContext"
+// import { Toaster } from "sonner"
+
+// const inter = Inter({ subsets: ["latin"] })
+
+// export const metadata = {
+//   title: "Dine Market",
+//   description: "Discover fashion that suits your style",
+// }
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode
+// }) {
+//   return (
+//     <html lang="en">
+//       <body className={inter.className}>
+//         <CartProvider>
+//           <MainNav />
+//           {children}
+//           <Toaster position="top-center" />
+//         </CartProvider>
+//       </body>
+//     </html>
+//   )
+// }
+
 import "./globals.css"
 import { Inter } from "next/font/google"
 // import Navbar from "../../../../../components/Navbar"
@@ -150,4 +182,3 @@ export default function RootLayout({
     </html>
   )
 }
-
