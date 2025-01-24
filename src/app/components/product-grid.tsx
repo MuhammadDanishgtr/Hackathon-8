@@ -94,6 +94,8 @@
   import { client } from "@/src/sanity/lib/client";
   import { allProduct } from "@/src/sanity/lib/querries";
 import Link from 'next/link';
+import { addToCart } from '../actions/actions';
+import Swal from 'sweetalert2';
   
 export default function ProductGrid() {
   const [products,setProducts] = useState<Product[]>([])
@@ -103,7 +105,20 @@ export default function ProductGrid() {
       setProducts(fetchProduct)
     }
     fetchproduct()
-  },[])
+  },[]);
+  const handleAddToCart = (e: React.MouseEvent, product:Product)=>{
+    e.preventDefault()
+    Swal.fire({
+      position: "top-right",
+      icon: "success",
+      title: `${product.title} Added to Cart`,
+      showConfirmButton: false,
+      timer: 1000,
+    })
+    addToCart(product)
+    // alert("ok")
+    // console.log(handleAddToCart)
+  }
   return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {products.map((products) => (
@@ -127,7 +142,7 @@ export default function ProductGrid() {
                 <Button
                   className="absolute bottom-4 right-4 bg-white text-black hover:bg-[#00BAB5] hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"
                   size="icon"
-                >
+                  onClick={(e)=>handleAddToCart(e,products)} >
                   <ShoppingCart className="w-4 h-4" />
                 </Button>
 
@@ -138,7 +153,7 @@ export default function ProductGrid() {
                   <h3 className="font-medium text-[#272343]">{products.title}</h3>
                   <p className="text-[#00BAB5]">${products.price}</p>
                 </div>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={(e)=>handleAddToCart(e,products)}>
                   <ShoppingCart className="w-4 h-4" />
                 </Button>
               </div>

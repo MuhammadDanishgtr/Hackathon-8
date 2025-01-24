@@ -25,6 +25,8 @@ import React,{ useEffect, useState } from "react";
 import { Product } from "@/types/productstype";
 import { client } from "@/src/sanity/lib/client";
 import { ourProducts } from '@/src/sanity/lib/querries';
+import { addToCart } from '../actions/actions';
+import Swal from 'sweetalert2';
 
 
 
@@ -38,6 +40,19 @@ export default function Products() {
     }
     fetchproduct()
   },[])
+  const handleAddToCart = (e: React.MouseEvent, product:Product)=>{
+      e.preventDefault()
+      Swal.fire({
+        position: "top-right",
+        icon: "success",
+        title: `${product.title} Added to Cart`,
+        showConfirmButton: false,
+        timer: 1000,
+      })
+      addToCart(product)
+      // alert("ok")
+      // console.log(handleAddToCart)
+    }
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -63,7 +78,7 @@ export default function Products() {
                 <Button
                   className="absolute bottom-4 right-4 bg-white text-black hover:bg-[#00BAB5] hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"
                   size="icon"
-                >
+                  onClick={(e)=>handleAddToCart(e,products)}>
                   <ShoppingCart className="w-4 h-4" />
                 </Button>
               </div>
@@ -72,7 +87,7 @@ export default function Products() {
                   <h3 className="font-medium">{products.title}</h3>
                   <p className="text-[#00BAB5]">${products.price}</p>
                 </div>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={(e)=>handleAddToCart(e,products)}>
                   <ShoppingCart className="w-4 h-4" />
                 </Button>
               </div>

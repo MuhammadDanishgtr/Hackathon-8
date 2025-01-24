@@ -151,17 +151,50 @@
 //   )
 // }
 
+// import "./globals.css"
+// import { Inter } from "next/font/google"
+// import MainNav from "../app/components/main-nav";
+// import { CartProvider } from "./context/CartContext"
+// import { Toaster } from "sonner"
+
+// const inter = Inter({ subsets: ["latin"] })
+
+// export const metadata = {
+//   title: "Dine Market",
+//   description: "Discover fashion that suits your style",
+// }
+
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode
+// }) {
+//   return (
+//     <html lang="en">
+//       <body className={inter.className}>
+//         <CartProvider>
+//           <MainNav />
+//           {children}
+//           <Toaster position="top-center" richColors />
+//         </CartProvider>
+//       </body>
+//     </html>
+//   )
+// }
+
+import type { Metadata } from "next"
+import { Inter } from 'next/font/google'
 import "./globals.css"
-import { Inter } from "next/font/google"
+import Header from "../app/components/header";
+import Footer from "../app/components/footer";
 import MainNav from "../app/components/main-nav";
-import { CartProvider } from "./context/CartContext"
-import { Toaster } from "sonner"
+
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "Dine Market",
-  description: "Discover fashion that suits your style",
+export const metadata: Metadata = {
+  title: "Comforty - Furniture Store",
+  description: "Best Furniture Collection For Your Interior",
 }
 
 export default function RootLayout({
@@ -172,13 +205,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CartProvider>
-          <MainNav />
-          {children}
-          <Toaster position="top-center" richColors />
-        </CartProvider>
+        <div className="max-w-[1920px] mx-auto">
+          <header>
+            <Header />
+            <MainNav />
+          </header>
+          <main>{children}</main>
+        </div>
+        <Footer />
       </body>
     </html>
   )
 }
-

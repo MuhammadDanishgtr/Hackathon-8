@@ -18,10 +18,10 @@ export default function Header() {
             Eng
             <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
-          <Link href="./components/faq" className="hover:text-gray-200">
+          <Link href="/components/faq" className="hover:text-gray-200">
             Faqs
           </Link>
-          <Link href="./components/products/contact" className="flex items-center gap-1 sm:gap-2 hover:text-gray-200">
+          <Link href="/components/products/contact" className="flex items-center gap-1 sm:gap-2 hover:text-gray-200">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
             <span className="hidden sm:inline">Need Help</span>
             <span className="sm:hidden">Help</span>

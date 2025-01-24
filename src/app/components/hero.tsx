@@ -1,5 +1,7 @@
 import Image from "next/image"
 import { Button } from "../../app/components/ui/button";
+import Link from "next/link";
+
 
 
 export default function Hero() {
@@ -8,10 +10,11 @@ export default function Hero() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 space-y-6">
-            <p className="text-[#00BAB5] uppercase tracking-wider">Welcome to comfy</p>
+            <p className="text-[#00BAB5] uppercase tracking-wider">Welcome to comforty</p>
             <h1 className="text-5xl font-bold leading-tight">
               Best Furniture Collection For Your Interior.
             </h1>
+            
             <Button className="bg-[#00BAB5] hover:bg-[#00A29D] text-white px-8">
               Shop Now
               <svg
@@ -28,6 +31,7 @@ export default function Hero() {
                 />
               </svg>
             </Button>
+          
           </div>
           <div className="md:w-1/2">
             <Image
