@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from "next/image";
@@ -34,7 +33,7 @@ export default function Categories() {
               {category.image && (
                 <Image
                   src={urlFor(category.image).url()}
-                  alt="Category"
+                  alt="Category you like"
                   fill
                   className="w-[424px] h-[424px] border rounded-[10px] object-cover transition-transform group-hover:scale-110"
                 />
@@ -52,6 +51,3 @@ export default function Categories() {
     </section>
   );
 }
-
-
-

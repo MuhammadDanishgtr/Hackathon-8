@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
 import { urlFor } from "../../sanity/lib/image";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
@@ -65,7 +66,7 @@ const CartPage = () => {
       0
     );
   };
-
+const router = useRouter();
   const handleProceed = () => {
     Swal.fire({
       title: "Processing your order...",
@@ -82,6 +83,7 @@ const CartPage = () => {
           "Your order has been successfully processed!",
           "success"
         );
+        router.push("/checkout")
         // Clear the cart after proceeding (optional)
         setCartItems([]);
       }
@@ -104,7 +106,7 @@ const CartPage = () => {
                   <Image
                     src={urlFor(item.image).url()}
                     className="w-16 h-16 object-cover rounded-lg"
-                    alt="image"
+                    alt="Item You Like"
                     width={500}
                     height={500}
                   />

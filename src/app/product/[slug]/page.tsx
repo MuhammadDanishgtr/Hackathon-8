@@ -12,7 +12,7 @@ interface ProductPageProps {
 
 async function getProduct (slug:string):Promise<Product>{
     return client.fetch(
-        groq `*[_type== "products" && slug.current ==$slug][0]{
+        groq `*[_type == "products" && slug.current == $slug][0]{
         _id,
         title,
         _type,
@@ -40,7 +40,7 @@ export default async function ProductPage( {params}:ProductPageProps){
     {product.image && (
                         <Image 
                         src = {urlFor(product.image).url()}
-                        alt= {product.title}
+                        alt= "product Image"
                         width={500} 
                         height={500}
                         className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
@@ -78,14 +78,14 @@ export default async function ProductPage( {params}:ProductPageProps){
           <div className="flex ml-6 items-center">
             <span className="mr-3">Size</span>
               <div className="form-control w-full max-w-xs">
-  <select className="select select-bordered">
+  {/* <select className="select select-bordered">
     <option disabled selected>Select Size</option>
     <option>S</option>
     <option>M</option>
     <option>L</option>
     <option>XL</option>
     <option>Standard</option>
-  </select>
+  </select> */}
               <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                 <svg
                   fill="none"

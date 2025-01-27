@@ -128,7 +128,7 @@ export default function ProductGrid() {
                {products.image && (
                 <Image
                   src= {urlFor(products.image).url()}
-                  alt={products.title}
+                  alt="product you trust"
                   fill
                   className="object-cover"
                 />)} 

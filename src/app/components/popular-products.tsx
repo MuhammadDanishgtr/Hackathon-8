@@ -40,7 +40,7 @@ export default function PopularProducts() {
               <div className="relative aspect-[4/3] bg-[#F7F7F7] rounded-lg overflow-hidden mb-4">
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt="Product You Trust"
                   fill
                   className="object-cover transition-transform group-hover:scale-105"
                 />

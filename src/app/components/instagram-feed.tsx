@@ -37,7 +37,7 @@ export default function InstagramFeed() {
             {products.image && (
              <Image
              src= {urlFor(products.image).url()}
-            alt={products.title}
+            alt="Instagram"
             fill
             className="object-cover hover:opacity-90 transition-opacity cursor-pointer"
             />)}

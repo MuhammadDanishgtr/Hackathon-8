@@ -66,7 +66,7 @@ export default function FeaturedProducts() {
                 {products.image && (
                                 <Image
                                   src= {urlFor(products.image).url()}
-                                  alt={products.title}
+                                  alt="Featured Product"
                                   fill
                                   className="object-cover w-[312px] h-[312px] rounded"
                                 />)}

@@ -167,7 +167,7 @@ export default function Gallery() {
               {product.image && (
                 <Image
                   src={urlFor(product.image).url()}
-                  alt={product.title || "Product Image"}
+                  alt="Product Image"
                   width={300}
                   height={300}
                   className="w-full h-full object-cover rounded-lg"

@@ -19,7 +19,7 @@ export default function BrandLogos() {
             <div key={brand.name} className="w-1/2 sm:w-1/3 md:w-auto">
               <Image
                 src={brand.logo}
-                alt={`${brand.name} logo`}
+                alt="Brand Logo"
                 width={120}
                 height={40}
                 className=" w-[85px] h-[87px] object-contain"

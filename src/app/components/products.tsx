@@ -64,7 +64,7 @@ export default function Products() {
                 {products.image && (
                                 <Image
                                   src= {urlFor(products.image).url()}
-                                  alt={products.title}
+                                  alt="Product you trust"
                                   fill
                                   className="object-cover"
                                 />)}

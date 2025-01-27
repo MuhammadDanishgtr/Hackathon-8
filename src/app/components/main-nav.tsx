@@ -23,7 +23,7 @@ export default function MainNav() {
               <Link href="/" className="text-[#272343] hover:text-[#00BAB5]">Home</Link>
               <Link href="/components/products/contact" className="text-[#272343] hover:text-[#00BAB5]">Shop</Link>
               <Link href="/components/products" className="text-[#272343] hover:text-[#00BAB5]">Products</Link>
-              <Link href="/" className="text-[#272343] hover:text-[#00BAB5]">Pages</Link>
+              <Link href="/Categories" className="text-[#272343] hover:text-[#00BAB5]">Categories</Link>
               <Link href="/components/about" className="text-[#272343] hover:text-[#00BAB5]">About</Link>
             </div>
             <div className="text-[#272343]">0800 555 5555</div>
