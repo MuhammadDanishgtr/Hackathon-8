@@ -40,7 +40,7 @@
   import { ShoppingCart } from 'lucide-react'
   import { Button } from "../../app/components/ui/button"
   import { urlFor } from "@/src/sanity/lib/image";
-  import Image from "next/image"
+  import Image from "next/image";
   import React,{ useEffect, useState } from "react";
   import { Product } from "@/types/productstype";
   import { client } from "@/src/sanity/lib/client";

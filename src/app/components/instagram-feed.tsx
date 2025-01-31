@@ -1,10 +1,10 @@
 'use client'
 import Image from "next/image"
 import { urlFor } from "@/src/sanity/lib/image";
-  import React,{ useEffect, useState } from "react";
-  import { Product } from "@/types/productstype";
-  import { client } from "@/src/sanity/lib/client";
-  import { featuredProduct, instagramfeed } from '@/src/sanity/lib/querries';
+import React,{ useEffect, useState } from "react";
+import { Product } from "@/types/productstype";
+import { client } from "@/src/sanity/lib/client";
+import { instagramfeed } from '@/src/sanity/lib/querries';
 
 // const instagramImages = [
 //   { src: "/TCategories2.png", alt: "Wooden chairs" },

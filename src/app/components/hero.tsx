@@ -1,12 +1,12 @@
 import Image from "next/image"
 import { Button } from "../../app/components/ui/button";
-import Link from "next/link";
+
 
 
 
 export default function Hero() {
   return (
-    <section className="bg-[#F7F7F7] py-16">
+    <div className="bg-[#F7F7F7] py-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 space-y-6">
@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }
 

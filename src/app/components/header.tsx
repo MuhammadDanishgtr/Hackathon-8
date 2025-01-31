@@ -1,6 +1,6 @@
 
 import Link from "next/link"
-import { ChevronDown, Clock, Menu } from 'lucide-react'
+import { ChevronDown, Clock} from 'lucide-react'
 
 export default function Header() {
   return (

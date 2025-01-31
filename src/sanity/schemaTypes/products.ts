@@ -1,5 +1,3 @@
-import { FireExtinguisher } from "lucide-react";
-import { Oooh_Baby } from "next/font/google";
 import { defineType } from "sanity";
 
 export const productSchema = defineType({
